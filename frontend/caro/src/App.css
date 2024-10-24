@@ -28,3 +28,9 @@
   font-size: 2rem;
   color: #0047FF;
 }
+
+.leaflet-container {
+  height: 400px;
+  width: 100%;
+  z-index: 0; /* Ensures the map layers are correctly displayed */
+}

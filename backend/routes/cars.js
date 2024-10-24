@@ -54,4 +54,19 @@ router.post('/add', authenticate, async (req, res) => {
   }
 });
 
+// Route to get cars for the logged-in owner
+router.get('/', authenticate, async (req, res) => {
+    try {
+      const owner = await Owner.findById(req.user.id).populate('cars');
+      if (!owner) {
+        return res.status(404).json({ message: 'Owner not found' });
+      }
+  
+      res.json({ cars: owner.cars });
+    } catch (error) {
+      console.error(error);
+      res.status(500).json({ message: 'Server error' });
+    }
+  });
+
 module.exports = router;

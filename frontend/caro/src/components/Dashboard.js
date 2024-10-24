@@ -1,18 +1,51 @@
 import React from 'react';
-import { Container } from 'react-bootstrap';
+import { Container, Button, Row, Col } from 'react-bootstrap';
 import NavBar from './NavBar';
+import { useNavigate } from 'react-router-dom';
 
 function Dashboard({ userType }) {
+  const navigate = useNavigate();
+
+  const handleAddCarClick = () => {
+    navigate('/add-car');
+  };
+
   return (
     <>
       <NavBar userType={userType} />
       <Container className="dashboard-container mt-4">
         <h2>Welcome, {userType === 'driver' ? 'Driver' : 'Owner'}!</h2>
-        {/* Conditional content can be rendered here based on user type */}
+
         {userType === 'driver' ? (
-          <p>Here are your options for booking a car...</p>
+          <>
+            <Row className="mt-4">
+              <Col>
+                <Button variant="primary" className="w-100" onClick={() => navigate('/book')}>
+                  Book a Car
+                </Button>
+              </Col>
+              <Col>
+                <Button variant="secondary" className="w-100" onClick={() => navigate('/bookings')}>
+                  View My Bookings
+                </Button>
+              </Col>
+            </Row>
+          </>
         ) : (
-          <p>Manage your cars or add new ones below...</p>
+          <>
+            <Row className="mt-4">
+              <Col>
+                <Button variant="primary" className="w-100" onClick={handleAddCarClick}>
+                  Add a New Car
+                </Button>
+              </Col>
+              <Col>
+                <Button variant="secondary" className="w-100" onClick={() => navigate('/cars')}>
+                  View My Cars
+                </Button>
+              </Col>
+            </Row>
+          </>
         )}
       </Container>
     </>
