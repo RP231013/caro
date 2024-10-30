@@ -1,11 +1,10 @@
 import React, { useState, useEffect } from 'react';
-import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
+import { BrowserRouter as Router, Route, Routes, Navigate } from 'react-router-dom';
 import Login from './components/Login';
 import SignUp from './components/SignUp';
-import Dashboard from './components/Dashboard';
+import DriverDashboard from './components/DriverDashboard'; // Renamed from Dashboard
 import AddCar from './components/AddCar';
 import OwnerDashboard from './components/OwnerDashboard';
-import DriverDashboard from './components/DriverDashboard';
 import NearbyCars from './components/NearbyCars';
 
 function App() {
@@ -23,26 +22,47 @@ function App() {
     }
   }, []);
 
-  // Define routes based on the authenticated user and userType
   return (
     <Router>
       <Routes>
         {/* Public Routes */}
         <Route path="/" element={<Login />} />
         <Route path="/signup" element={<SignUp />} />
-        <Route path="/driver-dashboard" element={<DriverDashboard />} />
-        <Route path="/nearby-cars" element={<NearbyCars />} /> {/* Ensure this is defined */}
 
-        {/* Protected Routes */}
-        {isAuthenticated && userType && (
+        {/* Protected Routes - Redirect to respective dashboards based on user type */}
+        {isAuthenticated && (
           <>
-            <Route path="/dashboard" element={<Dashboard userType={userType} />} />
+            {/* Redirect to owner dashboard if userType is 'owner' */}
+            <Route path="/owner-dashboard" element={<OwnerDashboard />} />
+            {/* Redirect to driver dashboard if userType is 'driver' */}
+            <Route path="/driver-dashboard" element={<DriverDashboard />} />
+
+            {/* Additional Owner Routes */}
             {userType === 'owner' && (
               <>
                 <Route path="/add-car" element={<AddCar />} />
                 <Route path="/cars" element={<OwnerDashboard />} />
               </>
             )}
+
+            {/* Additional Driver Routes */}
+            {userType === 'driver' && (
+              <>
+                <Route path="/nearby-cars" element={<NearbyCars />} />
+              </>
+            )}
+
+            {/* Default Redirect based on user type */}
+            <Route
+              path="/dashboard"
+              element={
+                userType === 'owner' ? (
+                  <Navigate to="/owner-dashboard" />
+                ) : (
+                  <Navigate to="/driver-dashboard" />
+                )
+              }
+            />
           </>
         )}
       </Routes>

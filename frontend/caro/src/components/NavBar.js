@@ -8,6 +8,7 @@ function NavBar({ userType }) {
   const handleLogout = () => {
     // Logic for logging out (e.g., clearing authentication tokens)
     navigate('/');
+    localStorage.clear();
   };
 
   return (

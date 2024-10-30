@@ -35,22 +35,22 @@ function SignUp() {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-
+  
     try {
       const response = await axios.post('http://localhost:5001/api/auth/signup', {
         ...formData,
         userType,
       });
-
+  
       // Store token and user information
       localStorage.setItem('token', response.data.token);
       localStorage.setItem('user', JSON.stringify(response.data.user));
-
+  
       // Redirect based on user type
       if (userType === 'driver') {
-        navigate('/dashboard');
-      } else {
-        navigate('/dashboard');
+        navigate('/driver-dashboard'); // Redirect to driver dashboard
+      } else if (userType === 'owner') {
+        navigate('/owner-dashboard'); // Redirect to owner dashboard
       }
     } catch (error) {
       console.error('Error during sign-up:', error.response.data.message);

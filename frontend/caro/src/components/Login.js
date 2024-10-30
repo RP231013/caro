@@ -12,22 +12,22 @@ function Login() {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-
+  
     try {
       const response = await axios.post('http://localhost:5001/api/auth/login', {
         email,
         password,
       });
-
+  
       // Store token and user information
       localStorage.setItem('token', response.data.token);
       localStorage.setItem('user', JSON.stringify(response.data.user));
-
+  
       // Redirect based on user type
       if (response.data.user.userType === 'driver') {
-        navigate('/dashboard');
-      } else {
-        navigate('/dashboard');
+        navigate('/driver-dashboard'); // Redirect to driver dashboard
+      } else if (response.data.user.userType === 'owner') {
+        navigate('/owner-dashboard'); // Redirect to owner dashboard
       }
     } catch (error) {
       console.error('Error during login:', error.response.data.message);

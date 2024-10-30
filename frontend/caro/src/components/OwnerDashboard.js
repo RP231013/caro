@@ -26,7 +26,7 @@ function OwnerDashboard() {
         },
       });
 
-      setCars(response.data.cars); // Assuming your backend returns an array of cars
+      setCars(response.data.cars); 
     } catch (error) {
       console.error('Error fetching cars:', error);
     }
@@ -59,7 +59,7 @@ function OwnerDashboard() {
                   position={JSON.parse(car.location)} // Assuming car.location is stored as a JSON string
                 >
                   <Popup>
-                    <strong>{car.make} {car.model}</strong> <br />
+                    <strong> {car.make} {car.model}</strong> {car.rented ? "🔴" : "🟢"} <br />
                     R{car.pricePerDay}/day <br />
                     Mileage: {car.mileage} km
                   </Popup>
@@ -69,13 +69,14 @@ function OwnerDashboard() {
           </Col>
 
           {/* Car List Section */}
-          <Col md={6}>
+          <Col md={3}>
             <div className="car-list">
               {cars.map((car) => (
                 <Card key={car.carID} className="mb-3 shadow-sm">
                   <Card.Body>
                     <Card.Title>{car.make} {car.model}</Card.Title>
                     <Card.Text>
+                      Availability: {car.rented ? "🔴 Currently Rented" : "🟢 Available for Rent"}<br />
                       Transmission: {car.transmission} <br />
                       Price/Day: R{car.pricePerDay} <br />
                       Mileage: {car.mileage} km <br />
