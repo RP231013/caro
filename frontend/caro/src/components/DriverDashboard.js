@@ -3,6 +3,7 @@ import { Container, Button, Form, Row, Col } from 'react-bootstrap';
 import { MapContainer, TileLayer, Marker, useMapEvents } from 'react-leaflet';
 import { useNavigate } from 'react-router-dom';
 import NavBar from './NavBar';
+import './DriverDashboard.css'; 
 
 function DriverDashboard() {
   const [startLocation, setStartLocation] = useState(null);
@@ -53,13 +54,29 @@ function DriverDashboard() {
     <>
       <NavBar userType="driver" />
       <Container className="mt-4">
-        <h2 className="mb-4">Find Nearby Cars</h2>
+        <h2 className="mb-4">Make a Booking</h2>
         <Row>
           <Col md={8}>
+            <div className="marker-selection mt-3">
+              <Button
+                variant={isStartMarkerSelected ? "primary" : "outline-primary"}
+                onClick={() => setIsStartMarkerSelected(true)}
+                className="me-2"
+              >
+                Select Start Location
+              </Button>
+              <Button
+                variant={!isStartMarkerSelected ? "primary" : "outline-primary"}
+                onClick={() => setIsStartMarkerSelected(false)}
+              >
+                Select Destination
+              </Button>
+            </div>
             <MapContainer
               center={[-26.2041, 28.0473]} // Default center (Johannesburg, South Africa)
               zoom={13}
               style={{ height: '400px', width: '100%' }}
+              className="map-container"
             >
               <TileLayer
                 url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
@@ -67,21 +84,6 @@ function DriverDashboard() {
               />
               <LocationSelector />
             </MapContainer>
-            <div className="marker-selection mt-3">
-              <Button
-                variant={isStartMarkerSelected ? "success" : "outline-success"}
-                onClick={() => setIsStartMarkerSelected(true)}
-                className="me-2"
-              >
-                Select Start Location
-              </Button>
-              <Button
-                variant={!isStartMarkerSelected ? "success" : "outline-success"}
-                onClick={() => setIsStartMarkerSelected(false)}
-              >
-                Select Destination
-              </Button>
-            </div>
           </Col>
 
           <Col md={4}>

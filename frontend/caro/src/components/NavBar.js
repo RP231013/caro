@@ -1,6 +1,7 @@
 import React from 'react';
 import { Navbar, Nav, Container } from 'react-bootstrap';
 import { useNavigate } from 'react-router-dom';
+import './DriverDashboard.css';
 
 function NavBar({ userType }) {
   const navigate = useNavigate();
@@ -19,7 +20,7 @@ function NavBar({ userType }) {
           {userType === 'driver' ? (
             <>
               <Nav.Link href="/driver-dashboard">Book</Nav.Link>
-              <Nav.Link href="/bookings">Bookings</Nav.Link>
+              <Nav.Link href="/driver-bookings">Bookings</Nav.Link>
               <Nav.Link href="/driver-account">Account</Nav.Link>
             </>
           ) : (

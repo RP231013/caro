@@ -1,0 +1,111 @@
+/* DriverDashboard.css */
+
+/* General Page Styling */
+body {
+    font-family: 'Arial', sans-serif;
+  }
+  
+  /* Navbar Styling */
+  .navbar {
+    background-color: #ffffff; /* White background */
+    border-bottom: 1px solid #e0e0e0; /* Light border at the bottom */
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05); /* Soft shadow for depth */
+  }
+  
+  .navbar-brand {
+    font-size: 24px;
+    font-weight: bold;
+    color: #007bff !important; /* Brand color */
+  }
+  
+  .nav-link {
+    font-size: 18px;
+    font-weight: 500;
+    color: #007bff !important; /* Brand color for links */
+    padding: 10px 20px;
+  }
+  
+  .nav-link:hover {
+    background-color: #f0f0f0;
+    border-radius: 5px;
+  }
+  
+  /* Driver Dashboard Page */
+  .container {
+    max-width: 1100px;
+  }
+  
+  h2 {
+    font-size: 36px;
+    font-weight: bold;
+    color: #007bff;
+  }
+  
+  .mt-4 {
+    margin-top: 3rem !important;
+  }
+  
+  /* Map and Marker Selection Styling */
+  .map-container {
+    position: relative;
+    height: 400px;
+    width: 100%;
+  }
+  
+  .marker-selection {
+    display: flex;
+    justify-content: center;
+    gap: 15px;
+  }
+  
+  .marker-selection button {
+    border-radius: 8px;
+    font-size: 16px;
+    padding: 10px 20px;
+    border: none;
+  }
+  
+  /* Date Selector Styling */
+  form {
+    margin-top: 2rem;
+  }
+  
+  form label {
+    font-size: 18px;
+    color: #555;
+  }
+  
+  form .form-control {
+    font-size: 16px;
+    padding: 12px;
+    border-radius: 8px;
+    border: 1px solid #ddd;
+  }
+  
+  /* Button Styling */
+  .btn-primary,
+  .btn-outline-primary {
+    font-size: 18px;
+    padding: 12px 30px;
+    border-radius: 8px;
+    text-transform: uppercase;
+  }
+  
+  .btn-primary {
+    background-color: #007bff;
+    border: none;
+  }
+  
+  .btn-outline-primary {
+    border: 2px solid #007bff;
+    color: #007bff;
+  }
+  
+  .w-100 {
+    width: 100% !important;
+  }
+  
+  .shadow-sm {
+    box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.05);
+  }
+  

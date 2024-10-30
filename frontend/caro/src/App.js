@@ -8,6 +8,9 @@ import OwnerDashboard from './components/OwnerDashboard';
 import NearbyCars from './components/NearbyCars';
 import DriverAccount from './components/DriverAccount';
 import OwnerAccount from './components/OwnerAccount';
+import DriverBookings from './components/DriverBookings';
+import ReturnCar from './components/ReturnCar';
+
 
 function App() {
   const [userType, setUserType] = useState(null); // State to store user type
@@ -53,6 +56,8 @@ function App() {
               <>
                 <Route path="/nearby-cars" element={<NearbyCars />} />
                 <Route path="/driver-account" element={<DriverAccount />} />
+                <Route path="/driver-bookings" element={<DriverBookings />} />
+                <Route path="/return-car" element={<ReturnCar />} />
               </>
             )}
 

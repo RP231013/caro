@@ -6,7 +6,7 @@ import { FaUser, FaCar, FaCalendarAlt } from 'react-icons/fa';
 
 function DriverAccount() {
   const [userInfo, setUserInfo] = useState({});
-  const [bookings, setBookings] = useState([]);
+  const [pastBookings, setPastBookings] = useState([]);
 
   useEffect(() => {
     // Fetch user info from API
@@ -20,13 +20,18 @@ function DriverAccount() {
         });
         setUserInfo(response.data);
 
-        // Fetch driver-specific bookings if needed
+        // Fetch driver-specific bookings
         const bookingsResponse = await axios.get('http://localhost:5001/api/bookings/driver', {
           headers: {
             Authorization: `Bearer ${token}`,
           },
         });
-        setBookings(bookingsResponse.data.bookings);
+        
+        // Filter past bookings (where activeBooking is false)
+        const filteredPastBookings = bookingsResponse.data.bookings.filter(
+          (booking) => booking.activeBooking === false
+        );
+        setPastBookings(filteredPastBookings);
       } catch (error) {
         console.error('Error fetching user info or bookings:', error);
       }
@@ -62,15 +67,16 @@ function DriverAccount() {
                 <div className="d-flex align-items-center">
                   <FaCalendarAlt size={50} className="me-3" />
                   <div>
-                    <Card.Title>Recent Bookings</Card.Title>
-                    {bookings.length > 0 ? (
-                      bookings.map((booking) => (
-                        <Card.Text key={booking.id}>
-                          {booking.carModel} - {new Date(booking.date).toLocaleDateString()}
+                    <Card.Title>Past Bookings</Card.Title>
+                    {pastBookings.length > 0 ? (
+                      pastBookings.map((booking) => (
+                        <Card.Text key={booking._id}>
+                          {booking.carID.make} {booking.carID.model} - Booked: {new Date(booking.startDate).toLocaleDateString()} to {new Date(booking.endDate).toLocaleDateString()} <br />
+                          Total Cost: R{booking.carID.pricePerDay * ((new Date(booking.endDate) - new Date(booking.startDate)) / (1000 * 60 * 60 * 24) || 1)}
                         </Card.Text>
                       ))
                     ) : (
-                      <Card.Text>No recent bookings</Card.Text>
+                      <Card.Text>No past bookings</Card.Text>
                     )}
                   </div>
                 </div>

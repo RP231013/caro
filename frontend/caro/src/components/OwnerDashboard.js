@@ -53,6 +53,7 @@ function OwnerDashboard() {
                 url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
                 attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
               />
+              
               {cars.map((car) => (
                 <Marker
                   key={car.carID}
@@ -69,7 +70,7 @@ function OwnerDashboard() {
           </Col>
 
           {/* Car List Section */}
-          <Col md={3}>
+          <Col md={6}>
             <div className="car-list">
               {cars.map((car) => (
                 <Card key={car.carID} className="mb-3 shadow-sm">
