@@ -1,10 +1,12 @@
 import React, { useState, useEffect } from 'react';
-import { BrowserRouter as Router, Route, Routes, useNavigate } from 'react-router-dom';
+import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 import Login from './components/Login';
 import SignUp from './components/SignUp';
 import Dashboard from './components/Dashboard';
 import AddCar from './components/AddCar';
 import OwnerDashboard from './components/OwnerDashboard';
+import DriverDashboard from './components/DriverDashboard';
+import NearbyCars from './components/NearbyCars';
 
 function App() {
   const [userType, setUserType] = useState(null); // State to store user type
@@ -28,22 +30,17 @@ function App() {
         {/* Public Routes */}
         <Route path="/" element={<Login />} />
         <Route path="/signup" element={<SignUp />} />
+        <Route path="/driver-dashboard" element={<DriverDashboard />} />
+        <Route path="/nearby-cars" element={<NearbyCars />} /> {/* Ensure this is defined */}
 
         {/* Protected Routes */}
         {isAuthenticated && userType && (
           <>
             <Route path="/dashboard" element={<Dashboard userType={userType} />} />
-            {/* Conditionally show routes based on user type */}
             {userType === 'owner' && (
               <>
                 <Route path="/add-car" element={<AddCar />} />
                 <Route path="/cars" element={<OwnerDashboard />} />
-                {/* Add more owner-specific routes here */}
-              </>
-            )}
-            {userType === 'driver' && (
-              <>
-                {/* Add driver-specific routes here */}
               </>
             )}
           </>

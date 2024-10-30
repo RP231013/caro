@@ -69,4 +69,66 @@ router.get('/', authenticate, async (req, res) => {
     }
   });
 
+
+// Helper function to calculate distance between two coordinates using Haversine formula
+const calculateDistance = (lat1, lng1, lat2, lng2) => {
+  const toRad = (value) => (value * Math.PI) / 180;
+  
+  const R = 6371; // Radius of the Earth in km
+  const dLat = toRad(lat2 - lat1);
+  const dLng = toRad(lng2 - lng1);
+  
+  const a =
+    Math.sin(dLat / 2) * Math.sin(dLat / 2) +
+    Math.cos(toRad(lat1)) * Math.cos(toRad(lat2)) *
+    Math.sin(dLng / 2) * Math.sin(dLng / 2);
+  const c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a));
+  const distance = R * c; // Distance in km
+  
+  return distance;
+};
+
+// Route to get nearby cars based on a location
+router.get('/nearby', authenticate, async (req, res) => {
+  const { latitude, longitude } = req.query;
+
+  // Convert latitude and longitude to numbers
+  const lat = parseFloat(latitude);
+  const lng = parseFloat(longitude);
+
+  // Define the maximum distance in kilometers 
+  const maxDistance = 8;
+
+  try {
+    // Fetch all cars from the database
+    const cars = await Car.find({ rented: false });
+
+    // Filter cars based on distance calculation
+    const nearbyCars = cars.filter((car) => {
+      // Parse the car's location from JSON
+      const carLocation = JSON.parse(car.location);
+      const carLat = carLocation.lat;
+      const carLng = carLocation.lng;
+
+      // Calculate the distance between the user's location and the car's location
+      const distance = calculateDistance(lat, lng, carLat, carLng);
+      
+      // Return cars that are within the specified maximum distance
+      return distance <= maxDistance;
+    });
+
+    if (!nearbyCars.length) {
+      return res.status(404).json({ message: 'No cars found within the specified radius' });
+    }
+
+    res.json({ cars: nearbyCars });
+  } catch (error) {
+    console.error('Error fetching nearby cars:', error);
+    res.status(500).json({ message: 'Server error' });
+  }
+});
+
+
+
+
 module.exports = router;
