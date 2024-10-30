@@ -18,15 +18,15 @@ function NavBar({ userType }) {
         <Nav className="ms-auto">
           {userType === 'driver' ? (
             <>
-              <Nav.Link href="/book">Book</Nav.Link>
+              <Nav.Link href="/driver-dashboard">Book</Nav.Link>
               <Nav.Link href="/bookings">Bookings</Nav.Link>
-              <Nav.Link href="/account">Account</Nav.Link>
+              <Nav.Link href="/driver-account">Account</Nav.Link>
             </>
           ) : (
             <>
               <Nav.Link href="/cars">Cars</Nav.Link>
               <Nav.Link href="/add-car">Add Car</Nav.Link>
-              <Nav.Link href="/account">Account</Nav.Link>
+              <Nav.Link href="/owner-account">Account</Nav.Link>
             </>
           )}
           <Nav.Link onClick={handleLogout}>Logout</Nav.Link>

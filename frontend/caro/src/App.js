@@ -6,6 +6,8 @@ import DriverDashboard from './components/DriverDashboard'; // Renamed from Dash
 import AddCar from './components/AddCar';
 import OwnerDashboard from './components/OwnerDashboard';
 import NearbyCars from './components/NearbyCars';
+import DriverAccount from './components/DriverAccount';
+import OwnerAccount from './components/OwnerAccount';
 
 function App() {
   const [userType, setUserType] = useState(null); // State to store user type
@@ -42,6 +44,7 @@ function App() {
               <>
                 <Route path="/add-car" element={<AddCar />} />
                 <Route path="/cars" element={<OwnerDashboard />} />
+                <Route path="/owner-account" element={<OwnerAccount />} />
               </>
             )}
 
@@ -49,6 +52,7 @@ function App() {
             {userType === 'driver' && (
               <>
                 <Route path="/nearby-cars" element={<NearbyCars />} />
+                <Route path="/driver-account" element={<DriverAccount />} />
               </>
             )}
 
