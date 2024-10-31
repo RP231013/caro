@@ -1,0 +1,90 @@
+/* Navbar container styling */
+.navbar-container {
+    display: flex;
+    justify-content: center;
+    margin-top: 20px;
+  }
+  
+  .tabs {
+    display: flex;
+    align-items: center;
+    position: relative;
+    background-color: #fff;
+    box-shadow: 0 0 1px 0 rgba(24, 94, 224, 0.15), 0 6px 12px 0 rgba(24, 94, 224, 0.15);
+    padding: 0.75rem;
+    border-radius: 99px;
+  }
+  
+  /* Logo styling */
+  .logo {
+    font-size: 1rem;
+    color: #0400ff;
+    font-weight: bolder;
+    margin-right: 0.5rem;
+    margin-left: 2px;
+    margin-top: 5px;
+  }
+  
+  /* Tab link styling */
+  .tab {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 30px;
+    width: 80px;
+    font-size: 1rem;
+    color: black;
+    font-weight: 500;
+    border-radius: 99px;
+    cursor: pointer;
+    transition: color 0.15s ease-in;
+    text-decoration: none;
+  }
+  
+  .tab:hover {
+    color: #185ee0;
+  }
+  
+  /* Active tab styling using NavLink's activeClassName */
+  .active-tab {
+    color: #185ee0;
+  }
+  
+  /* Logout tab styling */
+  .logout-tab {
+    background: none;
+    border: none;
+    color: black;
+    font-weight: 500;
+    cursor: pointer;
+    transition: color 0.15s ease-in;
+  }
+  
+  .logout-tab:hover {
+    color: #185ee0;
+  }
+  
+  /* Glider styling */
+  .glider {
+    position: absolute;
+    display: flex;
+    height: 30px;
+    width: 80px;
+    background-color: #e6eef9;
+    z-index: 1;
+    border-radius: 99px;
+    transition: 0.25s ease-out;
+  }
+  
+  /* Move glider based on active tab */
+  .active-tab + .glider {
+    transform: translateX(0%);
+  }
+  
+  /* Responsive Scaling */
+  @media (max-width: 700px) {
+    .tabs {
+      transform: scale(0.8);
+    }
+  }
+  

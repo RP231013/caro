@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Container, Button, Form, Row, Col } from 'react-bootstrap';
+import { Container, Form, Row, Col } from 'react-bootstrap';
 import { MapContainer, TileLayer, Marker, useMapEvents } from 'react-leaflet';
 import { useNavigate } from 'react-router-dom';
 import NavBar from './NavBar';
@@ -14,7 +14,6 @@ function DriverDashboard() {
   const [isStartMarkerSelected, setIsStartMarkerSelected] = useState(true);
   const navigate = useNavigate();
 
-  // Custom map component for selecting two locations (start and destination)
   function LocationSelector() {
     useMapEvents({
       click(e) {
@@ -40,7 +39,6 @@ function DriverDashboard() {
       return;
     }
   
-    // Store the selected locations and dates
     localStorage.setItem('startLocation', JSON.stringify(startLocation));
     localStorage.setItem('destinationLocation', JSON.stringify(destinationLocation));
     localStorage.setItem('startDate', startDate);
@@ -58,7 +56,6 @@ function DriverDashboard() {
         },
       });
   
-      // Check if there are nearby cars
       if (response.data.cars.length === 0) {
         alert("Sorry! There are currently no cars near you.");
         navigate('/driver-dashboard');
@@ -70,7 +67,6 @@ function DriverDashboard() {
       alert('Could not check for nearby cars. Please try again.');
     }
   };
-  
 
   return (
     <>
@@ -80,19 +76,18 @@ function DriverDashboard() {
         <Row>
           <Col md={8}>
             <div className="marker-selection mt-3">
-              <Button
-                variant={isStartMarkerSelected ? "primary" : "outline-primary"}
+              <button
+                className={`location-button ${isStartMarkerSelected ? 'active' : ''}`}
                 onClick={() => setIsStartMarkerSelected(true)}
-                className="me-2"
               >
                 Select Start Location
-              </Button>
-              <Button
-                variant={!isStartMarkerSelected ? "primary" : "outline-primary"}
+              </button>
+              <button
+                className={`location-button ${!isStartMarkerSelected ? 'active' : ''}`}
                 onClick={() => setIsStartMarkerSelected(false)}
               >
                 Select Destination
-              </Button>
+              </button>
             </div>
             <MapContainer
               center={[-26.2041, 28.0473]} // Default center (Johannesburg, South Africa)
@@ -130,9 +125,20 @@ function DriverDashboard() {
                 />
               </Form.Group>
 
-              <Button variant="primary" className="w-100 mt-3" onClick={handleFindCars}>
-                Find Cars
-              </Button>
+              {/* Custom Find Cars Button */}
+              <div className="find-cars-container">
+                <input type="checkbox" id="findCarsCheckbox" />
+                <label onClick={handleFindCars} htmlFor="findCarsCheckbox" className="find-cars-button">
+                  <span className="icon">
+                    <svg viewBox="0 0 30.143 30.143" xmlns="http://www.w3.org/2000/svg">
+                      <g>
+                        <path d="M20.034,2.357v3.824c3.482,1.798,5.869,5.427,5.869,9.619c0,5.98-4.848,10.83-10.828,10.83 c-5.982,0-10.832-4.85-10.832-10.83c0-3.844,2.012-7.215,5.029-9.136V2.689C4.245,4.918,0.731,9.945,0.731,15.801 c0,7.921,6.42,14.342,14.34,14.342c7.924,0,14.342-6.421,14.342-14.342C29.412,9.624,25.501,4.379,20.034,2.357z" />
+                        <path d="M14.795,17.652c1.576,0,1.736-0.931,1.736-2.076V2.08c0-1.148-0.16-2.08-1.736-2.08 c-1.57,0-1.732,0.932-1.732,2.08v13.496C13.062,16.722,13.225,17.652,14.795,17.652z" />
+                      </g>
+                    </svg>
+                  </span>
+                </label>
+              </div>
             </Form>
           </Col>
         </Row>

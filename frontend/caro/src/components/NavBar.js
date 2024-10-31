@@ -1,7 +1,6 @@
 import React from 'react';
-import { Navbar, Nav, Container } from 'react-bootstrap';
-import { useNavigate } from 'react-router-dom';
-import './DriverDashboard.css';
+import { NavLink, useNavigate } from 'react-router-dom';
+import './NavBar.css';
 
 function NavBar({ userType }) {
   const navigate = useNavigate();
@@ -12,32 +11,71 @@ function NavBar({ userType }) {
   };
 
   return (
-    <Navbar bg="light" expand="lg" className="py-3 shadow-sm">
-      <Container>
-        <Navbar.Brand href="/">Caro</Navbar.Brand>
-        {/* Toggle button for small screens */}
-        <Navbar.Toggle aria-controls="basic-navbar-nav" />
-        {/* Collapsible navigation links */}
-        <Navbar.Collapse id="basic-navbar-nav">
-          <Nav className="ms-auto">
-            {userType === 'driver' ? (
-              <>
-                <Nav.Link href="/driver-dashboard">Book</Nav.Link>
-                <Nav.Link href="/driver-bookings">Bookings</Nav.Link>
-                <Nav.Link href="/driver-account">Account</Nav.Link>
-              </>
-            ) : (
-              <>
-                <Nav.Link href="/cars">Cars</Nav.Link>
-                <Nav.Link href="/add-car">Add Car</Nav.Link>
-                <Nav.Link href="/owner-account">Account</Nav.Link>
-              </>
-            )}
-            <Nav.Link onClick={handleLogout}>Logout</Nav.Link>
-          </Nav>
-        </Navbar.Collapse>
-      </Container>
-    </Navbar>
+    <div className="navbar-container">
+      <div className="tabs">
+        {/* Logo */}
+        <div className="logo">
+          <span><h2>Caro</h2></span>
+        </div>
+
+        {userType === 'driver' ? (
+          <>
+            <NavLink
+              to="/driver-dashboard"
+              className="tab"
+              activeClassName="active-tab"
+            >
+              Book
+            </NavLink>
+            <NavLink
+              to="/driver-bookings"
+              className="tab"
+              activeClassName="active-tab"
+            >
+              Bookings
+            </NavLink>
+            <NavLink
+              to="/driver-account"
+              className="tab"
+              activeClassName="active-tab"
+            >
+              Account
+            </NavLink>
+          </>
+        ) : (
+          <>
+            <NavLink
+              to="/cars"
+              className="tab"
+              activeClassName="active-tab"
+            >
+              Cars
+            </NavLink>
+            <NavLink
+              to="/add-car"
+              className="tab"
+              activeClassName="active-tab"
+            >
+              Add Car
+            </NavLink>
+            <NavLink
+              to="/owner-account"
+              className="tab"
+              activeClassName="active-tab"
+            >
+              Account
+            </NavLink>
+          </>
+        )}
+
+        <button onClick={handleLogout} className="tab logout-tab">
+          Logout
+        </button>
+
+        {/* Glider */}
+        {/* <span className="glider"></span> */}
+      </div>
+    </div>
   );
 }
 
