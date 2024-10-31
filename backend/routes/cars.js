@@ -117,10 +117,7 @@ router.get('/nearby', authenticate, async (req, res) => {
       return distance <= maxDistance;
     });
 
-    if (!nearbyCars.length) {
-      return res.status(404).json({ message: 'No cars found within the specified radius' });
-    }
-
+    // Send an empty array if no nearby cars are found, instead of a 404 status
     res.json({ cars: nearbyCars });
   } catch (error) {
     console.error('Error fetching nearby cars:', error);

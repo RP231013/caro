@@ -44,7 +44,7 @@ function Login() {
   return (
     <>
       <WelcomeBar />
-      <Container className="login-container mt-5 p-4 rounded shadow">
+      <Container className="login-container mt-5 pt-5 p-4 rounded shadow col-6">
         <h2 className="mb-4">Let’s get you back in</h2>
         <ToggleButtonGroup
           type="radio"

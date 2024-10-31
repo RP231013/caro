@@ -32,5 +32,9 @@
 .leaflet-container {
   height: 400px;
   width: 100%;
-  z-index: 0; /* Ensures the map layers are correctly displayed */
+  z-index: 0; 
+}
+
+.navbar-collapse {
+  transition: all 0.3s ease;
 }

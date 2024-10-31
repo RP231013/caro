@@ -3,7 +3,8 @@ import { Container, Button, Form, Row, Col } from 'react-bootstrap';
 import { MapContainer, TileLayer, Marker, useMapEvents } from 'react-leaflet';
 import { useNavigate } from 'react-router-dom';
 import NavBar from './NavBar';
-import './DriverDashboard.css'; 
+import axios from 'axios';
+import './DriverDashboard.css';
 
 function DriverDashboard() {
   const [startLocation, setStartLocation] = useState(null);
@@ -33,22 +34,43 @@ function DriverDashboard() {
     );
   }
 
-  // Handle form submission to find nearby cars
-  const handleFindCars = () => {
+  const handleFindCars = async () => {
     if (!startLocation || !destinationLocation || !startDate || !endDate) {
       alert('Please fill in all the details and select both locations');
       return;
     }
-
-    // Store the selected locations and dates (can be stored in local storage or context API)
+  
+    // Store the selected locations and dates
     localStorage.setItem('startLocation', JSON.stringify(startLocation));
     localStorage.setItem('destinationLocation', JSON.stringify(destinationLocation));
     localStorage.setItem('startDate', startDate);
     localStorage.setItem('endDate', endDate);
-
-    // Navigate to the page with nearby cars
-    navigate('/nearby-cars');
+  
+    try {
+      const token = localStorage.getItem('token');
+      const response = await axios.get('http://localhost:5001/api/cars/nearby', {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+        params: {
+          latitude: startLocation.lat,
+          longitude: startLocation.lng,
+        },
+      });
+  
+      // Check if there are nearby cars
+      if (response.data.cars.length === 0) {
+        alert("Sorry! There are currently no cars near you.");
+        navigate('/driver-dashboard');
+      } else {
+        navigate('/nearby-cars');
+      }
+    } catch (error) {
+      console.error('Error checking for nearby cars:', error);
+      alert('Could not check for nearby cars. Please try again.');
+    }
   };
+  
 
   return (
     <>

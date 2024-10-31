@@ -10,9 +10,9 @@ import L from 'leaflet';
 // Fix default marker icon issue with React-Leaflet
 delete L.Icon.Default.prototype._getIconUrl;
 L.Icon.Default.mergeOptions({
-  iconRetinaUrl: 'https://cdn-icons-png.flaticon.com/512/3967/3967049.png',
+  iconRetinaUrl: '',
   iconUrl: 'https://cdn-icons-png.flaticon.com/512/3967/3967049.png',
-  shadowUrl: require('leaflet/dist/images/marker-shadow.png'),
+  shadowUrl: 'https://cdn-icons-png.flaticon.com/512/3967/3967049.png',
   iconSize: [45, 60], // size of the icon
 });
 
@@ -56,7 +56,12 @@ function NearbyCars() {
         },
       });
 
-      setCars(response.data.cars);
+      if (response.data.cars.length === 0) {
+        alert("Sorry! There are currently no cars near you!");
+        navigate('/driver-dashboard');
+      } else {
+        setCars(response.data.cars);
+      }
     } catch (error) {
       console.error('Error fetching nearby cars:', error);
     }
