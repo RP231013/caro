@@ -23,21 +23,21 @@ function NavBar({ userType }) {
             <NavLink
               to="/driver-dashboard"
               className="tab"
-              activeClassName="active-tab"
+              // activeClassName="active-tab"
             >
               Book
             </NavLink>
             <NavLink
               to="/driver-bookings"
               className="tab"
-              activeClassName="active-tab"
+              // activeClassName="active-tab"
             >
               Bookings
             </NavLink>
             <NavLink
               to="/driver-account"
               className="tab"
-              activeClassName="active-tab"
+              // activeClassName="active-tab"
             >
               Account
             </NavLink>
@@ -47,21 +47,21 @@ function NavBar({ userType }) {
             <NavLink
               to="/cars"
               className="tab"
-              activeClassName="active-tab"
+              // activeClassName="active-tab"
             >
               Cars
             </NavLink>
             <NavLink
               to="/add-car"
               className="tab"
-              activeClassName="active-tab"
+              // activeClassName="active-tab"
             >
               Add Car
             </NavLink>
             <NavLink
               to="/owner-account"
               className="tab"
-              activeClassName="active-tab"
+              // activeClassName="active-tab"
             >
               Account
             </NavLink>
@@ -72,8 +72,7 @@ function NavBar({ userType }) {
           Logout
         </button>
 
-        {/* Glider */}
-        {/* <span className="glider"></span> */}
+
       </div>
     </div>
   );

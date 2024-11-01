@@ -21,9 +21,19 @@
     color: #0400ff;
     font-weight: bolder;
     margin-right: 0.5rem;
-    margin-left: 2px;
+    margin-left: 0.5rem;
     margin-top: 5px;
   }
+
+/* Logo styling */
+.logo2 {
+    font-size: 1rem;
+    color: #585858;
+    font-weight: bold;
+    margin-right: 0.5rem;
+    margin-left: 15rem;
+    margin-top: 5px;
+    }
   
   /* Tab link styling */
   .tab {
@@ -71,15 +81,13 @@
     height: 30px;
     width: 80px;
     background-color: #e6eef9;
+    opacity: 0.4;
     z-index: 1;
     border-radius: 99px;
     transition: 0.25s ease-out;
   }
   
-  /* Move glider based on active tab */
-  .active-tab + .glider {
-    transform: translateX(0%);
-  }
+
   
   /* Responsive Scaling */
   @media (max-width: 700px) {

@@ -1,18 +1,32 @@
 import React from 'react';
-import { Navbar, Container } from 'react-bootstrap';
+import { NavLink, useNavigate } from 'react-router-dom';
+import './NavBar.css';
 
-function WelcomeBar() {
+function WelcomeBar({ userType }) {
+  const navigate = useNavigate();
+
+  const handleLogout = () => {
+    navigate('/');
+    localStorage.clear();
+  };
+
   return (
-    <Navbar bg="light" variant="light" className="py-3">
-      <Container>
-        <Navbar.Brand href="/"><h3>Caro</h3></Navbar.Brand>
-        <div className="ms-auto">
-          <Navbar.Text>
-            <h3>Commute with Caro.</h3>
-          </Navbar.Text>
+    <div className="navbar-container">
+      <div className="tabs">
+        {/* Logo */}
+        <div className="logo">
+          <span><h2>Caro</h2></span>
         </div>
-      </Container>
-    </Navbar>
+
+        <div className="logo2">
+          <span><h2>Commute with Caro.</h2></span>
+        </div>
+
+        
+
+
+      </div>
+    </div>
   );
 }
 

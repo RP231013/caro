@@ -5,6 +5,7 @@ import NavBar from './NavBar';
 import axios from 'axios';
 import 'leaflet/dist/leaflet.css';
 import { useNavigate } from 'react-router-dom';
+import carImage from '../assets/car.jpg';
 
 
 function DriverBookings() {
@@ -62,7 +63,7 @@ function DriverBookings() {
                     <Row>
                         <Col md={4}>
                         <img
-                            src="/path/to/your/car/image" // Placeholder image path
+                            src={carImage}
                             alt={`${car.make} ${car.model}`}
                             style={{ width: '100%', borderRadius: '8px' }}
                         />
