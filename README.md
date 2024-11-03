@@ -1,6 +1,6 @@
 # Caro - Car Sharing Platform
 
-![intro](../caro/mockups/intro.jpg)
+![intro](/mockups/intro.jpg)
 
 [→ Watch the demo video here ←]()
 
