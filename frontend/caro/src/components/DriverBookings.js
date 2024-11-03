@@ -1,12 +1,20 @@
 // DriverBookings.js
 import React, { useState, useEffect } from 'react';
-import { Container, Row, Col, Card, Button } from 'react-bootstrap';
+import { Container } from 'react-bootstrap';
 import NavBar from './NavBar';
 import axios from 'axios';
-import 'leaflet/dist/leaflet.css';
+import './DriverBookings.css';
 import { useNavigate } from 'react-router-dom';
-import carImage from '../assets/car.jpg';
 
+// Import images for random selection
+import car1 from '../assets/car1.png';
+import car2 from '../assets/car2.png';
+import car3 from '../assets/car3.png';
+import car4 from '../assets/car4.png';
+import car5 from '../assets/car5.png';
+import car6 from '../assets/car6.png';
+
+const carImages = [car1, car2, car3, car4, car5, car6];
 
 function DriverBookings() {
   const [bookings, setBookings] = useState([]);
@@ -21,18 +29,16 @@ function DriverBookings() {
         },
       });
 
-      setBookings(response.data.bookings); // Assuming the backend returns bookings with car details populated
+      setBookings(response.data.bookings); 
     } catch (error) {
       console.error('Error fetching bookings:', error);
     }
   };
 
-  // Calculate the number of days between two dates
   const calculateDays = (startDate, endDate) => {
     const start = new Date(startDate);
     const end = new Date(endDate);
-    const timeDiff = end - start;
-    return Math.ceil(timeDiff / (1000 * 60 * 60 * 24)); // Convert time difference from milliseconds to days
+    return Math.ceil((end - start) / (1000 * 60 * 60 * 24));
   };
 
   useEffect(() => {
@@ -42,72 +48,49 @@ function DriverBookings() {
   return (
     <>
       <NavBar userType="driver" />
-<Container className="mt-4">
-  <h2 className="mb-4">My Bookings</h2>
-  <Row>
-    {bookings.filter((booking) => booking.activeBooking === true).length > 0 ? (
-      bookings
-        .filter((booking) => booking.activeBooking === true) // Filter for active bookings
-        .map((booking) => {
-          const car = booking.carID; 
-          let rentalDays = calculateDays(booking.startDate, booking.endDate);
-          if (rentalDays === 0) {
-            rentalDays = 1;
-          }
-          const totalCost = rentalDays * car.pricePerDay;
+      <Container className="mt-4 driver-bookings-container">
+        <h2 className="mb-4">My Bookings</h2>
+        <div className="neon-row">
+          {bookings.filter((booking) => booking.activeBooking).length > 0 ? (
+            bookings
+              .filter((booking) => booking.activeBooking)
+              .map((booking) => {
+                const car = booking.carID;
+                const rentalDays = calculateDays(booking.startDate, booking.endDate) || 1;
+                const totalCost = rentalDays * car.pricePerDay;
+                const randomImage = carImages[Math.floor(Math.random() * carImages.length)];
 
-          return (
-                <Col md={12} key={booking._id}>
-                <Card className="mb-3 shadow-sm">
-                    <Card.Body>
-                    <Row>
-                        <Col md={4}>
-                        <img
-                            src={carImage}
-                            alt={`${car.make} ${car.model}`}
-                            style={{ width: '100%', borderRadius: '8px' }}
-                        />
-                        </Col>
-                        <Col md={8}>
-                        <h3>{car.make} {car.model}</h3>
-                        <p>
-                            Booked dates: {new Date(booking.startDate).toLocaleDateString()} - {new Date(booking.endDate).toLocaleDateString()} <br />
-                            Allowed mileage: {car.mileage ? `${car.mileage} km` : 'N/A'} <br />
-                            Transmission: {car.transmission || 'N/A'} <br />
-                            Price per day: R{car.pricePerDay || 'N/A'} <br />
-                            Registration Number: {car.registrationNumber || 'N/A'} <br />
-                            <strong>Total Price: R{totalCost}</strong>
+                return (
+                  <div key={booking._id} className="neon-card-container">
+                    <div className="neon-card">
+                      <div className="neon-img-content">
+                        <img src={randomImage} alt={`${car.make} ${car.model}`} className="neon-card-image" />
+                      </div>
+                      <div className="neon-content">
+                        <h3 className="neon-heading">{car.make} {car.model}</h3>
+                        <p className="neon-text-body">
+                          Booked dates: {new Date(booking.startDate).toLocaleDateString()} - {new Date(booking.endDate).toLocaleDateString()} <br />
+                          <b>Total Price: R{totalCost}</b>
                         </p>
-                        <Button
-                            variant="primary"
-                            size="sm"
-                            className="me-2"
-                        >
-                            View Key
-                        </Button>
-                        <Button
-                            variant="success"
-                            size="sm"
-                            className="me-2"
+                        <div className="neon-buttons">
+                          <button className="neon-card-button">View Key</button>
+                          <button
+                            className="neon-card-button"
                             onClick={() => navigate('/return-car', { state: { bookingId: booking._id, car } })}
-                        >
-                            Return
-                        </Button>
-                        <Button variant="danger" size="sm">Cancel</Button>
-                        </Col>
-                    </Row>
-                    </Card.Body>
-                </Card>
-                </Col>
-            );
-            })
-        ) : (
-        <Col>
+                          >
+                            Return Car
+                          </button>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                );
+              })
+          ) : (
             <p>No active bookings found.</p>
-        </Col>
-        )}
-    </Row>
-    </Container>
+          )}
+        </div>
+      </Container>
     </>
   );
 }

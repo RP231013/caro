@@ -39,6 +39,7 @@ function App() {
           <>
             {/* Redirect to owner dashboard if userType is 'owner' */}
             <Route path="/owner-dashboard" element={<OwnerDashboard />} />
+            
             {/* Redirect to driver dashboard if userType is 'driver' */}
             <Route path="/driver-dashboard" element={<DriverDashboard />} />
 

@@ -5,6 +5,7 @@ import WelcomeBar from './WelcomeBar';
 import axios from 'axios';
 import './Login.css';
 
+
 function Login() {
   const [view, setView] = useState('login');
   const [email, setEmail] = useState('');
@@ -26,8 +27,10 @@ function Login() {
       // Redirect based on user type
       if (response.data.user.userType === 'driver') {
         navigate('/driver-dashboard');
+        window.location.reload();
       } else if (response.data.user.userType === 'owner') {
         navigate('/owner-dashboard');
+        window.location.reload();
       }
     } catch (error) {
       console.error('Error during login:', error.response.data.message);
@@ -48,7 +51,6 @@ function Login() {
         <div className="wave"></div>
         <div className="wave"></div>
         <div className="wave"></div>
-        
         
         
 

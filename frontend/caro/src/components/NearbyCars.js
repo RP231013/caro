@@ -1,11 +1,21 @@
 import React, { useEffect, useState } from 'react';
-import { Container, Row, Col, Card, Button } from 'react-bootstrap';
+import { Container, Row, Col } from 'react-bootstrap';
 import { MapContainer, TileLayer, Marker, Popup } from 'react-leaflet';
 import { useNavigate } from 'react-router-dom';
 import NavBar from './NavBar';
 import axios from 'axios';
 import 'leaflet/dist/leaflet.css';
+import './NearbyCars.css';
 import L from 'leaflet';
+
+import car1 from '../assets/car1.png';
+import car2 from '../assets/car2.png';
+import car3 from '../assets/car3.png';
+import car4 from '../assets/car4.png';
+import car5 from '../assets/car5.png';
+import car6 from '../assets/car6.png';
+
+const carImages = [car1, car2, car3, car4, car5, car6];
 
 // Fix default marker icon issue with React-Leaflet
 delete L.Icon.Default.prototype._getIconUrl;
@@ -13,17 +23,16 @@ L.Icon.Default.mergeOptions({
   iconRetinaUrl: '',
   iconUrl: 'https://cdn-icons-png.flaticon.com/512/3967/3967049.png',
   shadowUrl: 'https://cdn-icons-png.flaticon.com/512/3967/3967049.png',
-  iconSize: [45, 60], // size of the icon
+  iconSize: [45, 60],
 });
 
-// Define a custom green marker icon for the user's location
 const greenIcon = new L.Icon({
   iconUrl: 'https://cdn-icons-png.flaticon.com/512/2536/2536745.png',
-  iconSize: [45, 60], // size of the icon
-  shadowSize: [50, 64], // size of the shadow
-  iconAnchor: [22, 94], // point of the icon which will correspond to marker's location
-  shadowAnchor: [4, 62], // the same for the shadow
-  popupAnchor: [-3, -76], // point from which the popup should open relative to the iconAnchor
+  iconSize: [45, 60],
+  shadowSize: [50, 64],
+  iconAnchor: [22, 94],
+  shadowAnchor: [4, 62],
+  popupAnchor: [-3, -76],
 });
 
 function NearbyCars() {
@@ -31,14 +40,13 @@ function NearbyCars() {
   const startLocation = JSON.parse(localStorage.getItem('startLocation'));
   const navigate = useNavigate();
 
-  // Function to calculate the number of rental days
   const calculateDays = (startDate, endDate) => {
     const start = new Date(startDate);
     const end = new Date(endDate);
     const timeDiff = end - start;
-    let rentalDays = Math.ceil(timeDiff / (1000 * 60 * 60 * 24)); // Convert time difference from milliseconds to days
+    let rentalDays = Math.ceil(timeDiff / (1000 * 60 * 60 * 24));
     if (rentalDays === 0) {
-      rentalDays = 1; // Ensure at least one rental day
+      rentalDays = 1;
     }
     return rentalDays;
   };
@@ -97,13 +105,12 @@ function NearbyCars() {
   return (
     <>
       <NavBar userType="driver" />
-      <Container className="mt-4">
+      <Container className="nearby-cars-container">
         <h2 className="mb-4">Cars Near You</h2>
         <Row>
-          {/* Map Section */}
           <Col md={6}>
             <MapContainer
-              center={startLocation ? [startLocation.lat, startLocation.lng] : [-26.2041, 28.0473]} // Default center to startLocation or fallback to Johannesburg
+              center={startLocation ? [startLocation.lat, startLocation.lng] : [-26.2041, 28.0473]}
               zoom={13}
               style={{ height: '400px', width: '100%' }}
             >
@@ -111,7 +118,6 @@ function NearbyCars() {
                 url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
                 attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
               />
-              {/* Display the user's location marker in green */}
               {startLocation && (
                 <Marker position={startLocation} icon={greenIcon}>
                   <Popup>Your Location</Popup>
@@ -129,7 +135,6 @@ function NearbyCars() {
             </MapContainer>
           </Col>
 
-          {/* Car List Section */}
           <Col md={6}>
             <div className="car-list">
               {cars.map((car) => {
@@ -137,23 +142,27 @@ function NearbyCars() {
                 const endDate = localStorage.getItem('endDate');
                 const rentalDays = calculateDays(startDate, endDate);
                 const totalCost = rentalDays * car.pricePerDay;
+                const randomImage = carImages[Math.floor(Math.random() * carImages.length)];
 
                 return (
-                  <Card key={car.carID} className="mb-3 shadow-sm">
-                    <Card.Body>
-                      <Card.Title>{car.make} {car.model}</Card.Title>
-                      <Card.Text>
+                  <div key={car.carID} className="card">
+                    <img src={randomImage} alt="Car" className="card-image" />
+                    <div className="card-details">
+                      <p className="text-title">{car.make} {car.model}</p>
+                      <p className="text-body">
                         Transmission: {car.transmission} <br />
-                        Price/Day: R{car.pricePerDay} <br />
                         Mileage: {car.mileage} km <br />
-                        Registration: {car.registrationNumber} <br />
+                        Price/Day: R{car.pricePerDay} <br />
                         <strong>Total Price: R{totalCost}</strong>
-                      </Card.Text>
-                      <Button variant="primary" size="sm" onClick={() => handleRentCar(car._id)}>
-                        Rent Now
-                      </Button>
-                    </Card.Body>
-                  </Card>
+                      </p>
+                    </div>
+                    <button
+                      className="card-button"
+                      onClick={() => handleRentCar(car._id)}
+                    >
+                      Rent Now
+                    </button>
+                  </div>
                 );
               })}
             </div>

@@ -125,6 +125,53 @@ router.get('/nearby', authenticate, async (req, res) => {
   }
 });
 
+// Delete a car route
+router.delete('/:id', authenticate, async (req, res) => {
+  const carID = req.params.id;
+
+  try {
+    // Find and delete the car by ID
+    const car = await Car.findOneAndDelete({ carID });
+
+    if (!car) {
+      return res.status(404).json({ message: 'Car not found' });
+    }
+
+    res.status(200).json({ message: 'Car deleted successfully' });
+  } catch (error) {
+    console.error('Error deleting car:', error);
+    res.status(500).json({ message: 'Server error' });
+  }
+});
+
+// Update a car route
+router.put('/:id', authenticate, async (req, res) => {
+  const carID = req.params.id;
+  const { make, model, transmission, pricePerDay, mileage, registrationNumber, location } = req.body;
+
+  try {
+    const car = await Car.findOne({ carID });
+
+    if (!car) {
+      return res.status(404).json({ message: 'Car not found' });
+    }
+
+    // Update the car details with the new values
+    car.make = make || car.make;
+    car.model = model || car.model;
+    car.transmission = transmission || car.transmission;
+    car.pricePerDay = pricePerDay || car.pricePerDay;
+    car.mileage = mileage || car.mileage;
+    car.registrationNumber = registrationNumber || car.registrationNumber;
+    
+
+    await car.save();
+    res.status(200).json({ message: 'Car updated successfully', car });
+  } catch (error) {
+    console.error('Error updating car:', error);
+    res.status(500).json({ message: 'Server error' });
+  }
+});
 
 
 
