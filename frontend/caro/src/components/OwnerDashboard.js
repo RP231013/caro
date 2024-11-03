@@ -201,6 +201,12 @@ const OwnerDashboard = () => {
           </Col>
         </Row>
       </Container>
+      {/* Wave Background Section with Overlay */}
+      <div className="wave-section">
+        <div className="wave"></div>
+        <div className="wave"></div>
+        <div className="wave"></div>
+      </div>
     </>
   );
 };

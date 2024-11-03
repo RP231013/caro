@@ -1,36 +1,23 @@
-/* Main container styling for the account page */
-.owner-account-container {
-    padding: 2rem;
+/* Main container styling for AddCar */
+.add-car-container {
     max-width: 1300px;
     width: 100%;
-    
     margin: auto;
     position: relative;
     overflow: hidden;
     color: #333;
     display: flex;
     flex-direction: column;
-    align-items: center;
-}
-
-/* Glassmorphism effect for the profile container */
-.profile-container-owner {
+    padding: 2rem;
     background: rgba(255, 255, 255, 0.25);
     -webkit-backdrop-filter: blur(9px);
     backdrop-filter: blur(9px);
     border: 1px solid rgba(255, 255, 255, 0.125);
-    padding: 2rem;
-    padding-top: 4rem;
     border-radius: 15px;
     box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
-    max-width: 400px;
-    width: 100%;
-    text-align: center;
-    height: fit-content ;
 }
 
-/* h2 gradient mask */
-.owner-account-container h2 {
+.add-car-container h2 {
     font-size: 2.5rem;
     font-weight: bold;
     margin-bottom: 2rem;
@@ -44,39 +31,6 @@
 @keyframes gradient-animation {
     0% { background-position: 0% 50%; }
     100% { background-position: 100% 50%; }
-}
-
-/* Profile information styling */
-.profile-info-owner {
-    font-size: 1.4rem;
-    font-weight: 400;
-    display: flex;
-    align-items: left;
-    margin-bottom: 1rem;
-    color:#5b42f3;
-    
-}
-
-.profile-info-owner-icon {
-    color: #5b42f3;
-    margin-right: 1rem;
-    font-size: 1.5rem;
-}
-
-/* Button styling */
-.edit-profile-btn {
-    display: block;
-    margin-top: 1.5rem;
-    padding: 0.5rem 2rem;
-    border-radius: 8px;
-    background-color: #5b42f3;
-    color: #fff;
-    border: none;
-    transition: background-color 0.3s ease;
-}
-
-.edit-profile-btn:hover {
-    background-color: #af40ff;
 }
 
 /* Wave effect styling */
@@ -107,17 +61,28 @@
 .wave:nth-child(2) { top: 20%; left: 40%; animation-duration: 50s; }
 .wave:nth-child(3) { top: 70%; left: -20%; animation-duration: 45s; }
 
-@keyframes wave {
-    0% { transform: rotate(0deg); }
-    100% { transform: rotate(360deg); }
+/* Form and Map Styling */
+.map-container {
+    height: 300px;
+    width: 100%;
+    border-radius: 15px;
 }
 
-.profile-info-owner input{
-    width: 100%;
-    padding: 8px;
-    margin-top: 5px;
+.form-control {
     border-radius: 8px;
-    border: 1px solid #ddd;
     font-size: 1rem;
-    color: #333;
+}
+
+button.w-100 {
+    font-size: 1rem;
+    padding: 0.75rem 0;
+    border-radius: 8px;
+    background-color: #008bf8;
+    color: #fff;
+    border: none;
+    transition: background-color 0.3s ease;
+}
+
+button.w-100:hover {
+    background-color: #5b42f3;
 }

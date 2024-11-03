@@ -1,15 +1,67 @@
 /* Main container styling for NearbyCars */
 .nearby-cars-container {
-    background-color: rgba(255, 255, 255, 0.85);
-    padding: 2rem;
-    border-radius: 10px;
-    max-width: 1000px;
+    
+    max-width: 1300px;
     width: 100%;
     margin: auto;
-    margin-top: 20px;
-    overflow-y: auto;
-  }
-  
+    position: relative;
+    overflow: hidden;
+    color: #333;
+    display: flex;
+    flex-direction: column;
+    padding-bottom: 20px;
+    background: rgba(255, 255, 255, 0.25);
+    -webkit-backdrop-filter: blur(9px);
+    backdrop-filter: blur(9px);
+    border: 1px solid rgba(255, 255, 255, 0.125);
+    border-radius: 15px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+.nearby-cars-container h2 {
+    font-size: 2.5rem;
+    font-weight: bold;
+    margin-bottom: 2rem;
+    background: linear-gradient(45deg, #af40ff, #5b42f3, #00ddeb);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    animation: gradient-animation 5s infinite linear;
+}
+
+@keyframes gradient-animation {
+    0% { background-position: 0% 50%; }
+    100% { background-position: 100% 50%; }
+}
+
+/* Wave effect styling */
+.wave-section {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 100vh;
+    overflow: hidden;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: -1;
+}
+
+.wave {
+    position: absolute;
+    width: 600px;
+    height: 800px;
+    opacity: 0.6;
+    background: linear-gradient(744deg, #af40ff, #5b42f3 60%, #00ddeb);
+    border-radius: 50%;
+    animation: wave 55s infinite linear;
+}
+
+.wave:nth-child(1) { top: -50%; left: -30%; animation-duration: 60s; }
+.wave:nth-child(2) { top: 20%; left: 40%; animation-duration: 50s; }
+.wave:nth-child(3) { top: 70%; left: -20%; animation-duration: 45s; }
+
   
   .car-list {
     display: grid;
@@ -17,20 +69,27 @@
      
   }
   
-  /* Card styling */
-  .card {
+  
+  .card2 {
     width: 100%;
     max-width: 240px;
     height: auto;
     border-radius: 20px;
-    background: #f5f5f5;
+    
     position: relative;
     padding: 1.8rem;
-    border: 2px solid #c3c6ce;
+    
     transition: 0.5s ease-out;
     overflow: hidden;
     margin-bottom: 1rem;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+
+    background: rgba(255, 255, 255, 0.25);
+    -webkit-backdrop-filter: blur(9px);
+    backdrop-filter: blur(9px);
+    border: 1px solid rgba(255, 255, 255, 0.125);
+    border-radius: 15px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    
   }
   
   .card-image {
@@ -44,10 +103,9 @@
   .card-details {
     color: black;
     height: 100%;
-    gap: 0.5em;
-    display: grid;
+    padding-bottom: 15px;
   }
-  
+
   .card-button {
     width: 60%;
     border-radius: 1rem;
@@ -64,12 +122,12 @@
     transition: 0.3s ease-out;
   }
   
-  .card:hover {
+  .card2:hover {
     border-color: #008bf8;
     box-shadow: 0 4px 18px 0 rgba(0, 0, 0, 0.25);
   }
   
-  .card:hover .card-button {
+  .card2:hover .card-button {
     opacity: 1;
   }
   

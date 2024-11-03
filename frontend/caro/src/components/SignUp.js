@@ -38,8 +38,10 @@ function SignUp() {
 
       if (userType === 'driver') {
         navigate('/driver-dashboard');
+        window.location.reload();
       } else if (userType === 'owner') {
         navigate('/owner-dashboard');
+        window.location.reload();
       }
     } catch (error) {
       console.error('Error during sign-up:', error.response.data.message);

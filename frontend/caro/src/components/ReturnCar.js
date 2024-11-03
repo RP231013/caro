@@ -1,4 +1,4 @@
-// ReturnCar.js
+
 import React, { useState } from 'react';
 import { Container, Button, Form, Row, Col } from 'react-bootstrap';
 import { MapContainer, TileLayer, Marker, useMapEvents } from 'react-leaflet';
@@ -7,6 +7,7 @@ import axios from 'axios';
 import NavBar from './NavBar';
 import 'leaflet/dist/leaflet.css';
 import L from 'leaflet';
+import './ReturnCar.css';
 
 // Fix default marker icon issue with React-Leaflet
 delete L.Icon.Default.prototype._getIconUrl;
@@ -103,6 +104,12 @@ function ReturnCar() {
           </Col>
         </Row>
       </Container>
+      {/* Wave Background Section with Overlay */}
+      <div className="wave-section">
+        <div className="wave"></div>
+        <div className="wave"></div>
+        <div className="wave"></div>
+      </div>
     </>
   );
 }

@@ -1,3 +1,4 @@
+// DriverDashboard.js
 import React, { useState } from 'react';
 import { Container, Form, Row, Col } from 'react-bootstrap';
 import { MapContainer, TileLayer, Marker, useMapEvents } from 'react-leaflet';
@@ -5,7 +6,6 @@ import { useNavigate } from 'react-router-dom';
 import NavBar from './NavBar';
 import axios from 'axios';
 import './DriverDashboard.css';
-
 
 function DriverDashboard() {
   const [startLocation, setStartLocation] = useState(null);
@@ -72,9 +72,9 @@ function DriverDashboard() {
   return (
     <>
       <NavBar userType="driver" />
-      
-      <Container className="mt-4">
-        <h2 className="mb-4">Make a Booking</h2>
+      <h2 className="mb-4" id="headinggg">Make a Booking</h2>
+      <Container className="dashboard-container mt-4">
+        
         <Row>
           <Col md={8}>
             <div className="marker-selection mt-3">
@@ -127,7 +127,6 @@ function DriverDashboard() {
                 />
               </Form.Group>
 
-              {/* Custom Find Cars Button */}
               <div className="find-cars-container">
                 <input type="checkbox" id="findCarsCheckbox" />
                 <label onClick={handleFindCars} htmlFor="findCarsCheckbox" className="find-cars-button">
@@ -138,9 +137,7 @@ function DriverDashboard() {
                         <path d="M14.795,17.652c1.576,0,1.736-0.931,1.736-2.076V2.08c0-1.148-0.16-2.08-1.736-2.08 c-1.57,0-1.732,0.932-1.732,2.08v13.496C13.062,16.722,13.225,17.652,14.795,17.652z" />
                       </g>
                     </svg>
-                    
                   </span>
-                  
                 </label>
                 <h4 className="find-cars-button-text">Find Cars</h4>
               </div>
@@ -148,6 +145,12 @@ function DriverDashboard() {
           </Col>
         </Row>
       </Container>
+      
+      <div className="wave-section">
+        <div className="wave"></div>
+        <div className="wave"></div>
+        <div className="wave"></div>
+      </div>
     </>
   );
 }

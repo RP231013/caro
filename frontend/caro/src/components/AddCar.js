@@ -6,6 +6,7 @@ import NavBar from './NavBar';
 import { useNavigate } from 'react-router-dom';
 
 import L from 'leaflet';
+import './AddCar.css';
 
 // Fix default marker icon issue with React-Leaflet
 delete L.Icon.Default.prototype._getIconUrl;
@@ -186,6 +187,12 @@ function AddCar() {
         </Col>
       </Row>
     </Container>
+    {/* Wave Background Section with Overlay */}
+    <div className="wave-section">
+        <div className="wave"></div>
+        <div className="wave"></div>
+        <div className="wave"></div>
+      </div>
     </>
     
   );

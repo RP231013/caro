@@ -1,3 +1,4 @@
+// NearbyCars.js
 import React, { useEffect, useState } from 'react';
 import { Container, Row, Col } from 'react-bootstrap';
 import { MapContainer, TileLayer, Marker, Popup } from 'react-leaflet';
@@ -145,10 +146,10 @@ function NearbyCars() {
                 const randomImage = carImages[Math.floor(Math.random() * carImages.length)];
 
                 return (
-                  <div key={car.carID} className="card">
+                  <div key={car.carID} className="card2">
                     <img src={randomImage} alt="Car" className="card-image" />
                     <div className="card-details">
-                      <p className="text-title">{car.make} {car.model}</p>
+                      <h4 className="text-title">{car.make} {car.model}</h4>
                       <p className="text-body">
                         Transmission: {car.transmission} <br />
                         Mileage: {car.mileage} km <br />
@@ -169,6 +170,13 @@ function NearbyCars() {
           </Col>
         </Row>
       </Container>
+
+      {/* Wave Background Section */}
+      <div className="wave-section">
+        <div className="wave"></div>
+        <div className="wave"></div>
+        <div className="wave"></div>
+      </div>
     </>
   );
 }
