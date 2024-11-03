@@ -51,23 +51,28 @@ router.post('/create', async (req, res) => {
 
 // Route to get bookings for a specific driver
 router.get('/driver', async (req, res) => {
-    try {
-      const token = req.header('Authorization').replace('Bearer ', '');
-      const decoded = jwt.verify(token, process.env.JWT_SECRET);
-      
-      // Find bookings for the authenticated driver
-      const bookings = await Booking.find({ driverID: decoded.id }).populate('carID');
-      
-      if (!bookings.length) {
-        return res.status(404).json({ message: 'No bookings found' });
-      }
-  
-      res.json({ bookings });
-    } catch (error) {
-      console.error(error);
-      res.status(500).json({ message: 'Server error' });
+  try {
+    const token = req.header('Authorization').replace('Bearer ', '');
+    const decoded = jwt.verify(token, process.env.JWT_SECRET);
+    
+    // Find bookings for the authenticated driver and populate car details
+    const bookings = await Booking.find({ driverID: decoded.id })
+      .populate({
+        path: 'carID', // Populate the carID field
+        select: 'make model pricePerDay', // Specify the fields you want from the Car document
+      });
+    
+    if (!bookings.length) {
+      return res.status(404).json({ message: 'No bookings found' });
     }
-  });
+
+    res.json({ bookings });
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ message: 'Server error' });
+  }
+});
+
 
   router.post('/return', async (req, res) => {
     const { bookingId, newLocation, newMileage } = req.body;

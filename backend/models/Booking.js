@@ -29,7 +29,7 @@ const bookingSchema = new mongoose.Schema({
     default: true,
   },
 }, {
-  timestamps: true, // Automatically add createdAt and updatedAt timestamps
+  timestamps: true, 
 });
 
 const Booking = mongoose.model('Booking', bookingSchema);
