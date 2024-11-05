@@ -6,7 +6,7 @@
 
 ## Overview
 
-Caro is a car-sharing platform aimed at helping people who have a driver’s license but cannot afford a car. The platform allows users to rent vehicles from private owners, facilitating an easy, affordable, and accessible way for everyone to access personal transportation. It works by having a _driver-user_ choose their location on a map to find a car, after having found a suitable car, they can rent it and a key NFC key will be sent to their phone to unlock and use the car with.
+Caro is a car-sharing platform aimed at helping commuters who have a driver’s license but cannot afford a car. The platform allows users to rent vehicles from private owners, facilitating an easy, affordable, and accessible way for everyone to access personal transportation. It works by having a _driver-user_ choose their location on a map to find a car, after having found a suitable car, they can rent it and a NFC key will be sent to their phone to unlock and use the car with.
 
 ## Table of Contents
 - [Mockups](#mockups)
