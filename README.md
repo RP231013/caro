@@ -177,3 +177,4 @@ This project is licensed under the MIT License - see the LICENSE file for detail
 
 ## Credits
 - Car illustrations form [Figma](https://www.figma.com/community/file/1076169841194336782)
+- Select CSS UI elements from [uiverse.io](https://uiverse.io/)
