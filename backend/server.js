@@ -10,10 +10,20 @@ const bookingsRoute = require('./routes/bookings');
 dotenv.config();
 
 const app = express();
+const path = require('path');
+
 
 // Middleware
 app.use(cors());
 app.use(express.json());
+
+// Serve static files from the frontend
+app.use(express.static(path.join(__dirname, '../frontend/caro/build')));
+
+app.get('*', (req, res) => {
+    res.sendFile(path.join(__dirname, '../frontend/caro/build', 'index.html'));
+});
+
 
 // MongoDB Connection
 mongoose.connect(process.env.MONGO_URI, {
