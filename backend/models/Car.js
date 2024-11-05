@@ -9,8 +9,8 @@ const carSchema = new mongoose.Schema({
   mileage: { type: Number, required: true },
   registrationNumber: { type: String, required: true },
   location: { type: String, required: true },
-  rented: { type: Boolean, default: false }, // New attribute to track rental status
-  rentedBy: { type: mongoose.Schema.Types.ObjectId, ref: 'User', required: false }, // Reference to user who rented the car
+  rented: { type: Boolean, default: false }, 
+  rentedBy: { type: mongoose.Schema.Types.ObjectId, ref: 'User', required: false }, 
 }, {
   timestamps: true,
 });

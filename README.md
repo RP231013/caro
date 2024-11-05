@@ -6,7 +6,7 @@
 
 ## Overview
 
-Caro is a car-sharing platform aimed at helping people who have a driver’s license but cannot afford a car. The platform allows users to rent vehicles from private owners, facilitating an easy, affordable, and accessible way for everyone to access personal transportation.
+Caro is a car-sharing platform aimed at helping people who have a driver’s license but cannot afford a car. The platform allows users to rent vehicles from private owners, facilitating an easy, affordable, and accessible way for everyone to access personal transportation. It works by having a _driver-user_ choose their location on a map to find a car, after having found a suitable car, they can rent it and a key NFC key will be sent to their phone to unlock and use the car with.
 
 ## Table of Contents
 - [Mockups](#mockups)
@@ -20,14 +20,7 @@ Caro is a car-sharing platform aimed at helping people who have a driver’s lic
 - [License](#license)
 
 ## Mockups
-### User-side Wireframes:
-
-![login](./Mockups/Login.jpg)
-![home](./Mockups/home.jpg)
-![responsive](./Mockups/Responsive-web.jpg)
-![dashboard](./Mockups/Dashboard.jpg)
-![Unapproved](./Mockups/CRUD.jpg)
-
+![mockups](/mockups/mockups.jpg)
 
 ## Features
 
@@ -167,6 +160,7 @@ Headers: `Authorization`: Bearer `<token>`
 Response: Returns confirmation of the deletion.
 
 ## ERD
+![ERD](/mockups/ERD.png)
 
 
 ## Contributing
@@ -180,3 +174,6 @@ Response: Returns confirmation of the deletion.
 ## License
 
 This project is licensed under the MIT License - see the LICENSE file for details.
+
+## Credits
+- Car illustrations form [Figma](https://www.figma.com/community/file/1076169841194336782)

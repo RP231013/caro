@@ -4,8 +4,13 @@
     justify-content: center;
     margin-top: 20px;
     z-index: 10;
+    
   }
   
+.welcome-container{
+  margin-bottom: -10rem !important;
+}
+
   .tabs {
     display: flex;
     align-items: center;

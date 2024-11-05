@@ -11,7 +11,8 @@ function WelcomeBar({ userType }) {
   };
 
   return (
-    <div className="navbar-container">
+    <div className="welcome-container">
+      <div className="navbar-container">
       <div className="tabs">
         {/* Logo */}
         <div className="logo">
@@ -27,6 +28,8 @@ function WelcomeBar({ userType }) {
 
       </div>
     </div>
+    </div>
+    
   );
 }
 
