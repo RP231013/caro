@@ -24,7 +24,7 @@ const OwnerDashboard = () => {
   const fetchCars = async () => {
     try {
       const token = localStorage.getItem('token');
-      const response = await axios.get('http://localhost:5001/api/cars', {
+      const response = await axios.get('${process.env.REACT_APP_API_URL}/api/cars', {
         headers: {
           Authorization: `Bearer ${token}`,
         },
@@ -39,7 +39,7 @@ const OwnerDashboard = () => {
   const deleteCar = async (carID) => {
     try {
       const token = localStorage.getItem('token');
-      await axios.delete(`http://localhost:5001/api/cars/${carID}`, {
+      await axios.delete(`${process.env.REACT_APP_API_URL}/api/cars/${carID}`, {
         headers: {
           Authorization: `Bearer ${token}`,
         },
@@ -63,7 +63,7 @@ const OwnerDashboard = () => {
   const saveCarChanges = async (carID) => {
     try {
       const token = localStorage.getItem('token');
-      await axios.put(`http://localhost:5001/api/cars/${carID}`, editData, {
+      await axios.put(`${process.env.REACT_APP_API_URL}/api/cars/${carID}`, editData, {
         headers: {
           Authorization: `Bearer ${token}`,
         },
