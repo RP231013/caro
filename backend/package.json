@@ -1,4 +1,9 @@
+
 {
+  "scripts": {
+    "start": "node server.js",
+    "heroku-postbuild": "NPM_CONFIG_PRODUCTION=false npm install npm && run build"
+    },
   "dependencies": {
     "bcryptjs": "^2.4.3",
     "cors": "^2.8.5",

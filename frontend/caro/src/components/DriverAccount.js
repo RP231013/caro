@@ -21,7 +21,7 @@ function DriverAccount() {
           },
         });
         setUserInfo(response.data);
-        setEditData(response.data); // Initialize editData with the user's current info
+        setEditData(response.data); // Initialise editData with the user's current info
 
         // Fetch driver-specific bookings
         const bookingsResponse = await axios.get('http://localhost:5001/api/bookings/driver', {
