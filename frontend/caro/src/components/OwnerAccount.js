@@ -130,7 +130,7 @@ function OwnerAccount() {
                 className="profile-input"
               />
             ) : (
-              <span>License Number: {userInfo.licenseNumber}</span>
+              <span>License No.: {userInfo.licenseNumber}</span>
             )}
           </div>
           <Button

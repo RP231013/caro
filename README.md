@@ -2,7 +2,7 @@
 
 ![intro](/mockups/intro.jpg)
 
-[→ Watch the demo video here ←]()
+[→ Watch the demo video here ←](https://drive.google.com/drive/folders/1hHSTWs-eO0on5pKrc-qode9RuWAhlF7t?usp=sharing)
 
 ## Overview
 
