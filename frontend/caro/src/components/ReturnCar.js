@@ -46,7 +46,7 @@ function ReturnCar() {
     try {
       const token = localStorage.getItem('token');
       const response = await axios.post(
-        '${process.env.REACT_APP_API_URL}/api/bookings/return',
+        `${process.env.REACT_APP_API_URL}/api/bookings/return`,
         {
           bookingId,
           newLocation: currentLocation,

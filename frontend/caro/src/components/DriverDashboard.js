@@ -47,7 +47,7 @@ function DriverDashboard() {
   
     try {
       const token = localStorage.getItem('token');
-      const response = await axios.get('${process.env.REACT_APP_API_URL}/api/cars/nearby', {
+      const response = await axios.get(`${process.env.REACT_APP_API_URL}/api/cars/nearby`, {
         headers: {
           Authorization: `Bearer ${token}`,
         },
